@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<?php
+session_start();
+include("inc/dbconnect.php");
+?>
+<html lang="ar">
+<head>
+	<?php include("head.php");?>
+</head>
+<body>
+<?php include("top_nav.php"); ?>
+    <div class="container" style="margin-top:70px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header text-primary"><i class='fa fa-user-md'></i>تسجيل الدخول</h1>
+        </div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+				<?php
+				if(isset($_POST["submit"]))
+					{
+						if($_POST["admin"]=="islam123"&&$_POST["pass"]=="123456789")
+						{
+							 $_SESSION['usertype'] ='123456789';
+							 $_SESSION['username']='islam123';
+
+							header("location:admin/admin_index.php");
+						}
+						else
+						{
+							echo "<div class='alert alert-danger'><b>Error</b> اسم المسؤول وكلمة المرور خاطئة.</div>";
+						}
+					}
+				?>
+					<form role="form" action="admin.php" method="post" autocomplete="off">
+			    	  	<div class="form-group">
+							 <label for="user_name" class="text-primary">اسم المسؤول</label>
+			    		    <input class="form-control" name="admin"  id="admin" type="text" required>
+			    		</div>
+			    		<div class="form-group">
+							<label for="pass" class="text-primary">كلمة المرور</label>
+			    			<input class="form-control" id="pass" name="pass" type="password" value="" required>
+			    		</div>
+                  <button class="btn btn-primary pull-right" name="submit" type="submit"><i class="fa fa-sign-in"></i> تسجيل الدخول</button>
+			      	</form>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+        </div>
+        </div>
+
+
+</body>
+
+</html>
